@@ -1,0 +1,158 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h2>{{ event["Event"] }}</h2>
+
+<p class="text-muted">
+
+{{ event["Date"] }}
+
+</p>
+
+<form
+action="/save_event/{{event['ID']}}"
+method="POST">
+
+<div class="mb-3">
+
+<label>MC 1</label>
+
+<select
+class="form-select"
+name="mc1">
+
+<option value="">-- Select Leader --</option>
+
+{% for leader in leaders %}
+
+<option
+value="{{leader}}"
+
+{% if event["MC1"]==leader %}
+selected
+{% endif %}
+
+>
+
+{{leader}}
+
+</option>
+
+{% endfor %}
+
+</select>
+
+</div>
+
+<div class="mb-3">
+
+<label>MC 2</label>
+
+<select
+class="form-select"
+name="mc2">
+
+<option value="">-- Select Leader --</option>
+
+{% for leader in leaders %}
+
+<option
+value="{{leader}}"
+
+{% if event["MC2"]==leader %}
+selected
+{% endif %}
+
+>
+
+{{leader}}
+
+</option>
+
+{% endfor %}
+
+</select>
+
+</div>
+
+<div class="mb-3">
+
+<label>Devotion</label>
+
+<select
+class="form-select"
+name="devotion">
+
+<option value="">-- Select Leader --</option>
+
+{% for leader in leaders %}
+
+<option
+value="{{leader}}"
+
+{% if event["Devotion"]==leader %}
+selected
+{% endif %}
+
+>
+
+{{leader}}
+
+</option>
+
+{% endfor %}
+
+</select>
+
+</div>
+
+<div class="mb-3">
+
+<label>Food</label>
+
+<select
+class="form-select"
+name="food">
+
+<option value="">-- Select Leader --</option>
+
+{% for leader in leaders %}
+
+<option
+value="{{leader}}"
+
+{% if event["Food"]==leader %}
+selected
+{% endif %}
+
+>
+
+{{leader}}
+
+</option>
+
+{% endfor %}
+
+</select>
+
+</div>
+
+<button
+class="btn btn-success">
+
+Save Changes
+
+</button>
+
+<a
+href="/dashboard"
+class="btn btn-secondary">
+
+Cancel
+
+</a>
+
+</form>
+
+{% endblock %}

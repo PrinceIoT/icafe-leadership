@@ -1,0 +1,130 @@
+import gspread
+from google.oauth2.service_account import Credentials
+
+SCOPES = [
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/drive"
+]
+
+creds = Credentials.from_service_account_file(
+    "credentials.json",
+    scopes=SCOPES
+)
+
+client = gspread.authorize(creds)
+
+spreadsheet = client.open("iCafe Leadership")
+
+events_sheet = spreadsheet.worksheet("Events")
+leaders_sheet = spreadsheet.worksheet("Leaders")
+volunteers_sheet = spreadsheet.worksheet("Form Responses 1")
+
+
+def get_events():
+
+    event_rows = events_sheet.get_all_records()
+
+    volunteer_rows = volunteers_sheet.get_all_records()
+
+    events = []
+
+    for event in event_rows:
+
+        helpers = []
+
+        for volunteer in volunteer_rows:
+
+            volunteer_event = volunteer.get(
+                "Which event would you like to help with?",
+                ""
+            ).strip()
+
+            if volunteer_event == event["Event"]:
+
+                helper_name = volunteer.get(
+                    "Full Name",
+                    ""
+                ).strip()
+
+                helper_role = volunteer.get(
+                    "Which role would you like?",
+                    ""
+                ).strip()
+
+                helpers.append(
+                    f"{helper_name} - {helper_role}"
+                )
+
+        events.append({
+
+            "id": event["ID"],
+
+            "date": event["Date"],
+
+            "name": event["Event"],
+
+            "mc1": event["MC1"],
+
+            "mc2": event["MC2"],
+
+            "devotion": event["Devotion"],
+
+            "food": event["Food"],
+
+            "helpers": helpers
+
+        })
+
+    return events
+
+
+def get_leaders():
+
+    rows = leaders_sheet.get_all_records()
+
+    leaders=[]
+
+    for row in rows:
+
+        leaders.append(row["Name"])
+
+    return leaders
+
+
+def get_helpers():
+
+    rows = volunteers_sheet.get_all_records()
+
+    return rows
+
+# ---------------------------------------------------------
+# Get one event by ID
+# ---------------------------------------------------------
+
+def get_event(event_id):
+
+    rows = events_sheet.get_all_records()
+
+    for row in rows:
+
+        if str(row["ID"]) == str(event_id):
+
+            return row
+
+    return None
+
+
+# ---------------------------------------------------------
+# Update event
+# ---------------------------------------------------------
+
+def update_event(event_id, mc1, mc2, devotion, food):
+
+    cell = events_sheet.find(str(event_id))
+
+    row = cell.row
+
+    events_sheet.update(f"D{row}", [[mc1]])
+    events_sheet.update(f"E{row}", [[mc2]])
+    events_sheet.update(f"F{row}", [[devotion]])
+    events_sheet.update(f"G{row}", [[food]])

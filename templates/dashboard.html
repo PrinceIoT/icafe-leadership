@@ -1,0 +1,164 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+<h2>
+
+Welcome {{leader}}
+
+</h2>
+
+<div>
+
+<a href="/signup"
+
+class="btn btn-success">
+
+Volunteer Signup
+
+</a>
+
+<a href="/logout"
+
+class="btn btn-danger">
+
+Logout
+
+</a>
+
+</div>
+
+</div>
+
+
+<div class="row">
+
+{% for event in events %}
+
+<div class="col-lg-6">
+
+<div class="card event-card mb-4">
+
+<div class="card-body">
+
+<h3>
+
+🎉 {{event.name}}
+
+</h3>
+
+<p class="text-muted">
+
+📅 {{event.date}}
+
+</p>
+
+<hr>
+
+<div class="role-row">
+
+<span>🎤 MC 1</span>
+
+<strong>
+
+{{event.mc1 if event.mc1 else "--"}}
+
+</strong>
+
+</div>
+
+<div class="role-row">
+
+<span>🎤 MC 2</span>
+
+<strong>
+
+{{event.mc2 if event.mc2 else "--"}}
+
+</strong>
+
+</div>
+
+<div class="role-row">
+
+<span>🙏 Devotion</span>
+
+<strong>
+
+{{event.devotion if event.devotion else "--"}}
+
+</strong>
+
+</div>
+
+<div class="role-row">
+
+<span>🍕 Food</span>
+
+<strong>
+
+{{event.food if event.food else "--"}}
+
+</strong>
+
+</div>
+
+<hr>
+
+<h5>
+
+🤝 Helpers
+
+</h5>
+
+{% if event.helpers %}
+
+<ul class="list-group mb-3">
+
+{% for helper in event.helpers %}
+
+<li class="list-group-item">
+
+{{ helper }}
+
+</li>
+
+{% endfor %}
+
+</ul>
+
+{% else %}
+
+<p class="text-muted">
+
+No helpers yet.
+
+</p>
+
+{% endif %}
+
+<div class="text-center mt-4">
+
+<a
+href="{{ url_for('edit_event', event_id=event.id) }}"
+class="btn btn-primary">
+
+✏ Edit Event
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

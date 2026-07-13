@@ -1,0 +1,147 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<!-- Page Header -->
+<div class="text-center mb-5">
+
+    <h1 class="display-5 fw-bold">
+        iCafe Leadership Portal
+    </h1>
+
+    <p class="text-muted fs-5">
+        Internal Leadership Management & Volunteer Registration
+    </p>
+
+</div>
+
+<div class="row justify-content-center align-items-stretch g-4">
+
+    <!-- Leader Login -->
+
+    <div class="col-lg-5">
+
+        <div class="card shadow-lg h-100">
+
+            <div class="card-body p-5">
+
+                <div class="text-center mb-4">
+
+                    <h2>🔐 Leader Login</h2>
+                    <p class="text-muted">
+                        For iCafe leadership members only.
+                    </p>
+                    
+                    {% if error %}
+                    <div class="alert alert-danger">
+                        {{ error }}
+                    
+                    </div>
+                    
+                    {% endif %}
+                    
+                    <form action="/login" method="POST">
+
+                    
+
+
+                </div>
+
+                <form action="/login" method="POST">
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+
+                            First Name
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control form-control-lg"
+                            name="name"
+                            placeholder="Enter your first name"
+                            required>
+
+                    </div>
+
+                    <div class="mb-4">
+
+                        <label class="form-label">
+
+                            Shared Password
+
+                        </label>
+
+                        <input
+                            type="password"
+                            class="form-control form-control-lg"
+                            name="password"
+                            placeholder="Enter shared password"
+                            required>
+
+                    </div>
+
+                    <button class="btn btn-primary btn-lg w-100">
+
+                        Login
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Volunteer Signup -->
+
+    <div class="col-lg-5">
+
+        <div class="card shadow-lg border-success h-100">
+
+            <div class="card-body p-5 text-center d-flex flex-column justify-content-center">
+
+                <h2 class="mb-3">
+
+                    🤝 Volunteer Signup
+
+                </h2>
+
+                <p class="mb-4">
+
+                    We'd love your help during our iCafe events.
+                    If you'd like to volunteer, please complete the sign-up form.
+
+                </p>
+
+                <a
+                    href="https://forms.gle/pKd8G4JpEuWV63kU8"
+                    target="_blank"
+                    class="btn btn-success btn-lg">
+
+                    Open Volunteer Form
+
+                </a>
+
+                <hr>
+
+                <p class="text-muted mb-0">
+
+                    The form only takes a minute to complete.
+                    Thank you for supporting iCafe!
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

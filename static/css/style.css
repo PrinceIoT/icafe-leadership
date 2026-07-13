@@ -1,0 +1,178 @@
+/* -----------------------------
+   General
+------------------------------*/
+
+body{
+    background:#f5f7fb;
+    font-family:"Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color:#2c3e50;
+}
+
+/* -----------------------------
+   Navbar
+------------------------------*/
+
+.navbar{
+    background:linear-gradient(90deg,#2563eb,#1d4ed8) !important;
+    box-shadow:0 4px 12px rgba(0,0,0,.12);
+}
+
+.navbar-brand{
+    font-weight:700;
+    letter-spacing:.5px;
+}
+
+/* -----------------------------
+   Event Cards
+------------------------------*/
+
+.event-card{
+    border:none;
+    border-radius:18px;
+    overflow:hidden;
+    transition:all .25s ease;
+    box-shadow:0 8px 24px rgba(0,0,0,.08);
+    background:#fff;
+}
+
+.event-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 18px 35px rgba(0,0,0,.15);
+}
+
+/* -----------------------------
+   Card Body
+------------------------------*/
+
+.card-body{
+    padding:28px;
+}
+
+/* -----------------------------
+   Titles
+------------------------------*/
+
+h3{
+    font-weight:700;
+    color:#1e3a8a;
+}
+
+h5{
+    font-weight:600;
+    color:#374151;
+    margin-bottom:15px;
+}
+
+/* -----------------------------
+   Leadership Rows
+------------------------------*/
+
+.role-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 0;
+    border-bottom:1px solid #edf2f7;
+}
+
+.role-row:last-child{
+    border-bottom:none;
+}
+
+.role-row strong{
+    color:#2563eb;
+}
+
+.role-row span{
+    color:#555;
+    font-weight:500;
+}
+
+/* -----------------------------
+   Buttons
+------------------------------*/
+
+.btn{
+    border-radius:10px;
+    font-weight:600;
+    transition:.25s;
+}
+
+.btn-primary{
+    background:#2563eb;
+    border:none;
+}
+
+.btn-primary:hover{
+    background:#1d4ed8;
+}
+
+.btn-success{
+    border:none;
+}
+
+/* -----------------------------
+   Helpers
+------------------------------*/
+
+.list-group-item{
+    border:none;
+    background:#f8fafc;
+    margin-bottom:6px;
+    border-radius:8px;
+    font-size:15px;
+}
+
+/* -----------------------------
+   Login Cards
+------------------------------*/
+
+.card{
+    border:none;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.card:hover{
+    box-shadow:0 16px 35px rgba(0,0,0,.12);
+}
+
+/* -----------------------------
+   Form Controls
+------------------------------*/
+
+.form-control,
+.form-select{
+    border-radius:10px;
+    border:1px solid #d1d5db;
+}
+
+.form-control:focus,
+.form-select:focus{
+    border-color:#2563eb;
+    box-shadow:0 0 0 .15rem rgba(37,99,235,.15);
+}
+
+/* -----------------------------
+   Lists
+------------------------------*/
+
+ul{
+    padding-left:0;
+    list-style:none;
+}
+
+li{
+    padding:6px 0;
+}
+
+/* -----------------------------
+   Footer (optional)
+------------------------------*/
+
+footer{
+    margin-top:40px;
+    text-align:center;
+    color:#777;
+    font-size:14px;
+}
