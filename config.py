@@ -1,4 +1,9 @@
-PASSWORD = "icafe2026"
+import os
+
+PASSWORD = os.getenv(
+    "PASSWORD",
+    "icafe2026"
+)
 
 LEADERS = [
     "Dishan",

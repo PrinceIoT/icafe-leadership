@@ -1,24 +1,67 @@
+import os
+import json
 import gspread
 from google.oauth2.service_account import Credentials
+
+# ---------------------------------------------------------
+# Google API Scopes
+# ---------------------------------------------------------
 
 SCOPES = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive"
 ]
 
-creds = Credentials.from_service_account_file(
-    "credentials.json",
-    scopes=SCOPES
-)
+# ---------------------------------------------------------
+# Load Credentials
+# Local PC -> credentials.json
+# Render -> GOOGLE_CREDENTIALS Environment Variable
+# ---------------------------------------------------------
+
+if "GOOGLE_CREDENTIALS" in os.environ:
+
+    credentials = json.loads(
+        os.environ["GOOGLE_CREDENTIALS"]
+    )
+
+    creds = Credentials.from_service_account_info(
+        credentials,
+        scopes=SCOPES
+    )
+
+else:
+
+    creds = Credentials.from_service_account_file(
+        "credentials.json",
+        scopes=SCOPES
+    )
 
 client = gspread.authorize(creds)
 
-spreadsheet = client.open("iCafe Leadership")
+# ---------------------------------------------------------
+# Open Spreadsheet
+# Local -> Spreadsheet Name
+# Render -> Spreadsheet ID
+# ---------------------------------------------------------
+
+if "SPREADSHEET_ID" in os.environ:
+
+    spreadsheet = client.open_by_key(
+        os.environ["SPREADSHEET_ID"]
+    )
+
+else:
+
+    spreadsheet = client.open("iCafe Leadership")
 
 events_sheet = spreadsheet.worksheet("Events")
 leaders_sheet = spreadsheet.worksheet("Leaders")
 volunteers_sheet = spreadsheet.worksheet("Form Responses 1")
 
+
+# ---------------------------------------------------------
+# Get All Events
+# ---------------------------------------------------------
 
 def get_events():
 
@@ -78,11 +121,15 @@ def get_events():
     return events
 
 
+# ---------------------------------------------------------
+# Get Leader Names
+# ---------------------------------------------------------
+
 def get_leaders():
 
     rows = leaders_sheet.get_all_records()
 
-    leaders=[]
+    leaders = []
 
     for row in rows:
 
@@ -91,14 +138,19 @@ def get_leaders():
     return leaders
 
 
+# ---------------------------------------------------------
+# Get Volunteer Responses
+# ---------------------------------------------------------
+
 def get_helpers():
 
     rows = volunteers_sheet.get_all_records()
 
     return rows
 
+
 # ---------------------------------------------------------
-# Get one event by ID
+# Get One Event
 # ---------------------------------------------------------
 
 def get_event(event_id):
@@ -115,7 +167,7 @@ def get_event(event_id):
 
 
 # ---------------------------------------------------------
-# Update event
+# Update Event Assignments
 # ---------------------------------------------------------
 
 def update_event(event_id, mc1, mc2, devotion, food):
