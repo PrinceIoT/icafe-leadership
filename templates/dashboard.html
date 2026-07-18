@@ -13,7 +13,6 @@ Welcome {{leader}}
 <div>
 
 <a href="/signup"
-
 class="btn btn-success">
 
 Volunteer Signup
@@ -21,7 +20,6 @@ Volunteer Signup
 </a>
 
 <a href="/logout"
-
 class="btn btn-danger">
 
 Logout
@@ -31,7 +29,6 @@ Logout
 </div>
 
 </div>
-
 
 <div class="row">
 
@@ -57,25 +54,29 @@ Logout
 
 <hr>
 
+{% if event.name == "A New Measure (with Prof. Dr. William D. Phillips)" %}
+
 <div class="role-row">
 
-<span>🎤 MC 1</span>
+<span>📝 Notes</span>
 
 <strong>
 
-{{event.mc1 if event.mc1 else "--"}}
+This event is being organized by VBG Bern.
 
 </strong>
 
 </div>
 
+{% else %}
+
 <div class="role-row">
 
-<span>🎤 MC 2</span>
+<span class="role-label">🎤 MC</span>
 
-<strong>
+<strong class="role-value">
 
-{{event.mc2 if event.mc2 else "--"}}
+{{ event.mc if event.mc else "Not Assigned" }}
 
 </strong>
 
@@ -136,6 +137,8 @@ Logout
 No helpers yet.
 
 </p>
+
+{% endif %}
 
 {% endif %}
 

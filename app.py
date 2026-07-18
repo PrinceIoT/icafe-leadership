@@ -103,15 +103,15 @@ def test_helpers():
 @app.route("/save_event/<int:event_id>", methods=["POST"])
 def save_event(event_id):
 
-    mc1 = request.form["mc1"]
-    mc2 = request.form["mc2"]
+    mc = request.form["mc"]
+    
     devotion = request.form["devotion"]
     food = request.form["food"]
 
     update_event(
         event_id,
-        mc1,
-        mc2,
+        mc,
+        
         devotion,
         food
     )

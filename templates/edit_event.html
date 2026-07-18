@@ -16,11 +16,11 @@ method="POST">
 
 <div class="mb-3">
 
-<label>MC 1</label>
+<label>MC</label>
 
 <select
 class="form-select"
-name="mc1">
+name="mc">
 
 <option value="">-- Select Leader --</option>
 
@@ -29,38 +29,7 @@ name="mc1">
 <option
 value="{{leader}}"
 
-{% if event["MC1"]==leader %}
-selected
-{% endif %}
-
->
-
-{{leader}}
-
-</option>
-
-{% endfor %}
-
-</select>
-
-</div>
-
-<div class="mb-3">
-
-<label>MC 2</label>
-
-<select
-class="form-select"
-name="mc2">
-
-<option value="">-- Select Leader --</option>
-
-{% for leader in leaders %}
-
-<option
-value="{{leader}}"
-
-{% if event["MC2"]==leader %}
+{% if event["MC"]==leader %}
 selected
 {% endif %}
 

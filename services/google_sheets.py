@@ -106,9 +106,10 @@ def get_events():
 
             "name": event["Event"],
 
-            "mc1": event["MC1"],
+            
+            "mc": event["MC"],
 
-            "mc2": event["MC2"],
+            
 
             "devotion": event["Devotion"],
 
@@ -170,13 +171,13 @@ def get_event(event_id):
 # Update Event Assignments
 # ---------------------------------------------------------
 
-def update_event(event_id, mc1, mc2, devotion, food):
+def update_event(event_id, mc,  devotion, food):
 
     cell = events_sheet.find(str(event_id))
 
     row = cell.row
 
-    events_sheet.update(f"D{row}", [[mc1]])
-    events_sheet.update(f"E{row}", [[mc2]])
+    events_sheet.update(f"D{row}", [[mc]])
+    
     events_sheet.update(f"F{row}", [[devotion]])
     events_sheet.update(f"G{row}", [[food]])

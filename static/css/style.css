@@ -176,3 +176,13 @@ footer{
     color:#777;
     font-size:14px;
 }
+
+.role-label{
+    font-weight:600;
+    color:#374151;
+}
+
+.role-value{
+    color:#2563eb;
+    font-weight:600;
+}
